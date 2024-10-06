@@ -21,11 +21,11 @@ export const createAccount = createAsyncThunk("register", async (data) => {
 
     try {
         const response = await axiosInstance.post("/users/register", formData);
-        console.log(response)
+       
         toast.success("Registered successfully!!!");
         return response.data;
     } catch (error) {
-        console.log(error)
+        
         toast.error(error?.response?.data?.error);
         throw error;
     }
@@ -36,7 +36,8 @@ export const userLogin = createAsyncThunk("login", async (data) => {
         const response = await axiosInstance.post("/users/login", data);
         return response.data.data.user;
     } catch (error) {
-        toast.error(error?.response?.data?.error);
+        
+        toast.error(error?.response?.data.error);
         throw error;
     }
 });
@@ -87,7 +88,6 @@ export const changePassword = createAsyncThunk(
 
 export const getCurrentUser = createAsyncThunk("getCurrentUser", async () => {
     const response = await axiosInstance.get("/users/current-user");
-    // console.log(response)
     return response.data.data.user;
 });
 
